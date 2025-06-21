@@ -19,7 +19,7 @@
         .input-field {
             @apply p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition duration-300 shadow-sm;
         }
-        /* Estilos para o modal de mensagem */
+        /* Estilos para o modal de mensagem (geral) */
         .message-modal {
             @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 p-4; /* Escurece mais o fundo */
         }
@@ -28,6 +28,23 @@
         }
         .message-content button {
             @apply mt-6 bg-pink-600 text-white py-2 px-5 rounded-full hover:bg-pink-700 transition duration-300 font-semibold;
+        }
+
+        /* Estilos para o modal de artigo (específico) */
+        .article-modal {
+            @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 p-4 overflow-y-auto; /* Fundo mais escuro, scroll para conteúdo grande */
+        }
+        .article-content {
+            @apply bg-white p-8 rounded-xl shadow-2xl max-w-3xl w-full text-left relative; /* Mais largo */
+        }
+        .article-content h3 {
+            @apply text-2xl font-bold text-purple-700 mb-4;
+        }
+        .article-content p {
+            @apply text-gray-700 text-base leading-relaxed mb-4;
+        }
+        .article-close-button {
+            @apply absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 rounded-full p-2 text-gray-600 transition duration-300;
         }
     </style>
 </head>
@@ -90,7 +107,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
 
                     <!-- Artigo 1: Desvendando as Boas Práticas de Fabricação (BPF) para Farmácias de Manipulação -->
-                    <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col" data-article-id="bpf-farmacias">
                         <img src="https://placehold.co/600x300/fbe9e8/e53e3e?text=BPF" alt="Imagem ilustrativa de Boas Práticas de Fabricação" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-purple-700 mb-3 leading-tight">
@@ -99,7 +116,7 @@
                             <p class="text-gray-600 text-sm mb-4 flex-grow">
                                 As Boas Práticas de Fabricação (BPF) são o alicerce para a qualidade e segurança na manipulação. Este artigo explora os princípios fundamentais das BPF, desde a infraestrutura e pessoal qualificado até o controle de processos e documentação. Entenda como a implementação rigorosa das BPF não só garante a conformidade regulatória, mas também eleva a confiança dos seus clientes e otimiza a operação da sua farmácia. Descubra os erros comuns a evitar e as melhores práticas para assegurar a excelência.
                             </p>
-                            <a href="#" class="text-pink-600 hover:text-pink-800 font-semibold inline-flex items-center self-end">
+                            <a href="#" class="text-pink-600 hover:text-pink-800 font-semibold inline-flex items-center self-end read-more-btn" data-article-id="bpf-farmacias">
                                 Ler Mais
                                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </a>
@@ -107,7 +124,7 @@
                     </article>
 
                     <!-- Artigo 2: Preparando Sua Farmácia para uma Auditoria da ANVISA: Um Checklist Essencial -->
-                    <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col" data-article-id="auditoria-anvisa">
                         <img src="https://placehold.co/600x300/e0f2f7/4c51bf?text=Auditoria" alt="Imagem ilustrativa de auditoria ANVISA" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-purple-700 mb-3 leading-tight">
@@ -116,7 +133,7 @@
                             <p class="text-gray-600 text-sm mb-4 flex-grow">
                                 Uma auditoria da ANVISA pode parecer intimidante, mas com a preparação correta, sua farmácia pode passar por ela com tranquilidade. Este artigo oferece um checklist detalhado dos pontos mais importantes que os fiscais da ANVISA verificam, abrangendo desde a organização documental e calibração de equipamentos até a higiene das instalações e o treinamento da equipe. Aprenda a identificar e corrigir potenciais falhas antes que elas se tornem problemas e garanta que sua farmácia esteja sempre em total conformidade.
                             </p>
-                            <a href="#" class="text-pink-600 hover:text-pink-800 font-semibold inline-flex items-center self-end">
+                            <a href="#" class="text-pink-600 hover:text-pink-800 font-semibold inline-flex items-center self-end read-more-btn" data-article-id="auditoria-anvisa">
                                 Ler Mais
                                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </a>
@@ -124,7 +141,7 @@
                     </article>
 
                     <!-- Artigo 3: Otimizando a Gestão de Insumos: Evitando Desperdícios na Manipulação -->
-                    <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+                    <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col" data-article-id="gestao-insumos">
                         <img src="https://placehold.co/600x300/f3e8ff/8b5cf6?text=Insumos" alt="Imagem ilustrativa de gestão de insumos" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-purple-700 mb-3 leading-tight">
@@ -133,7 +150,7 @@
                             <p class="text-gray-600 text-sm mb-4 flex-grow">
                                 A gestão eficiente de insumos é crucial para a saúde financeira e operacional de uma farmácia de manipulação. Este artigo aborda estratégias inteligentes para otimizar o controle de estoque, reduzir perdas por validade ou manuseio inadequado e melhorar a previsão de demanda. Descubra ferramentas e técnicas para minimizar desperdícios, garantir a disponibilidade dos materiais necessários e, consequentemente, aumentar a lucratividade do seu negócio. Transforme seus processos de insumos em um diferencial competitivo.
                             </p>
-                            <a href="#" class="text-pink-600 hover:text-pink-800 font-semibold inline-flex items-center self-end">
+                            <a href="#" class="text-pink-600 hover:text-pink-800 font-semibold inline-flex items-center self-end read-more-btn" data-article-id="gestao-insumos">
                                 Ler Mais
                                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </a>
@@ -245,11 +262,24 @@
         </div>
     </footer>
 
-    <!-- Modal para mensagens -->
+    <!-- Modal para mensagens (geral) -->
     <div id="message-modal" class="message-modal hidden">
         <div class="message-content">
             <p id="modal-message" class="text-lg font-semibold mb-4"></p>
             <button id="modal-close-button">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal para exibição de artigos -->
+    <div id="article-modal" class="article-modal hidden">
+        <div class="article-content">
+            <button class="article-close-button" id="article-close-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h3 id="modal-article-title"></h3>
+            <div id="modal-article-body" class="prose max-w-none"></div>
         </div>
     </div>
 
@@ -265,6 +295,125 @@
         let auth;
         let userId;
 
+        // Dados dos artigos completos
+        const articlesData = {
+            "bpf-farmacias": {
+                title: "Desvendando as Boas Práticas de Fabricação (BPF) para Farmácias de Manipulação",
+                content: `
+                    <p>As Boas Práticas de Fabricação (BPF) são mais do que um conjunto de regras; elas são a espinha dorsal para garantir a qualidade, segurança e eficácia dos produtos manipulados. Para farmácias de manipulação, a adesão rigorosa às BPF não é apenas uma exigência regulatória da ANVISA, mas um diferencial competitivo que constrói a confiança do cliente e otimiza a eficiência operacional.</p>
+                    <h4>O que são as BPF?</h4>
+                    <p>As BPF englobam um conjunto de diretrizes e procedimentos que cobrem todos os aspectos da produção de medicamentos e produtos de saúde. Isso inclui desde a aquisição de matérias-primas e o controle de qualidade até a manipulação, embalagem, armazenamento e distribuição. O objetivo principal é minimizar riscos de contaminação, erros e desvios de qualidade.</p>
+                    <h4>Pilares Fundamentais das BPF:</h4>
+                    <ul>
+                        <li><strong>Instalações e Equipamentos:</strong> Ambientes projetados para evitar contaminação cruzada, com superfícies de fácil limpeza e desinfecção. Equipamentos devem ser qualificados, calibrados e mantidos regularmente.</li>
+                        <li><strong>Pessoal:</strong> A equipe deve ser qualificada, treinada e ter a saúde monitorada. Treinamentos periódicos sobre BPF e procedimentos específicos são essenciais.</li>
+                        <li><strong>Matérias-Primas:</strong> Rigoroso controle na aquisição, recebimento, quarentena, amostragem e armazenamento de insumos. A rastreabilidade é fundamental.</li>
+                        <li><strong>Processos de Manipulação:</strong> Procedimentos padronizados (POPs) para cada etapa, garantindo a reprodutibilidade e a qualidade do produto final. Validação de processos críticos.</li>
+                        <li><strong>Controle de Qualidade:</strong> Testes em matérias-primas e produtos acabados, acompanhamento da estabilidade, e monitoramento ambiental.</li>
+                        <li><strong>Documentação:</strong> Manutenção de registos completos e precisos de todas as etapas, desde a entrada de insumos até a liberação do produto.</li>
+                        <li><strong>Devoluções e Reclamações:</strong> Sistema eficaz para lidar com produtos devolvidos, recolhimentos e reclamações de clientes, investigando as causas e implementando ações corretivas.</li>
+                    </ul>
+                    <h4>Benefícios da Implementação das BPF:</h4>
+                    <p>Além da conformidade com a legislação, a adesão às BPF resulta em:</p>
+                    <ul>
+                        <li>Aumento da segurança e eficácia dos produtos.</li>
+                        <li>Redução de erros e retrabalhos.</li>
+                        <li>Maior confiança dos pacientes e prescritores.</li>
+                        <li>Melhora da imagem e reputação da farmácia.</li>
+                        <li>Otimização de custos a longo prazo pela redução de perdas.</li>
+                    </ul>
+                    <p>A implementação das BPF exige comprometimento contínuo e uma cultura de qualidade em toda a farmácia. É um investimento que se traduz em excelência e sucesso sustentável.</p>
+                `
+            },
+            "auditoria-anvisa": {
+                title: "Preparando Sua Farmácia para uma Auditoria da ANVISA: Um Checklist Essencial",
+                content: `
+                    <p>A auditoria da ANVISA é um momento crucial para qualquer farmácia de manipulação. É a oportunidade de demonstrar que todas as normas e regulamentações estão sendo seguidas à risca, garantindo a qualidade e segurança dos produtos. Uma preparação adequada pode transformar o que seria um momento de stress em uma demonstração de excelência. </p>
+                    <h4>Checklist de Preparação Essencial:</h4>
+                    <ol>
+                        <li><strong>Documentação em Dia:</strong>
+                            <ul>
+                                <li>Alvará Sanitário e Licenças atualizadas.</li>
+                                <li>Manuais de Boas Práticas de Fabricação (MBPF) e Procedimentos Operacionais Padrão (POPs) revisados e aprovados.</li>
+                                <li>Registos de controle de qualidade de matérias-primas e produtos acabados.</li>
+                                <li>Livros de receituário, controlo de estoque (entradas e saídas de insumos e produtos).</li>
+                                <li>Fichas de controlo de temperatura e humidade dos ambientes.</li>
+                                <li>Registos de manutenção preventiva e calibração de equipamentos.</li>
+                                <li>Certificados de análise dos fornecedores de insumos.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Instalações e Equipamentos:</strong>
+                            <ul>
+                                <li>Áreas de manipulação, lavagem, armazenamento e dispensação limpas, organizadas e com fluxos definidos.</li>
+                                <li>Pisos, paredes e tetos de materiais laváveis e íntegros.</li>
+                                <li>Sistemas de ventilação e exaustão funcionando adequadamente.</li>
+                                <li>Equipamentos limpos, identificados e calibrados (balanças, capelas, estufas, etc.).</li>
+                                <li>Verificação das datas de validade dos insumos e produtos armazenados.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pessoal:</strong>
+                            <ul>
+                                <li>Colaboradores com uniformes limpos e adequados (toucas, máscaras, luvas, propés, óculos de segurança).</li>
+                                <li>Registos de saúde ocupacional em dia.</li>
+                                <li>Comprovantes de treinamentos em BPF, POPs e uso de EPIs.</li>
+                                <li>Conhecimento da equipe sobre os procedimentos que executa.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Higiene e Sanitização:</strong>
+                            <ul>
+                                <li>Registos de sanitização e desinfecção de áreas e equipamentos.</li>
+                                <li>Disponibilidade de lavatórios, sabonetes antissépticos e toalhas descartáveis.</li>
+                                <li>Lixeiras com acionamento por pedal e sacos plásticos.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Manejo de Resíduos:</strong>
+                            <ul>
+                                <li>Separação e descarte correto de resíduos químicos, biológicos e perfurocortantes.</li>
+                                <li>Contrato com empresa especializada para recolha e descarte de resíduos de saúde.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Realize auditorias internas periódicas. Isso ajuda a identificar e corrigir falhas antes que a ANVISA as encontre, tornando o processo de fiscalização mais tranquilo e demonstrando o compromisso da sua farmácia com a qualidade e a segurança.</p>
+                `
+            },
+            "gestao-insumos": {
+                title: "Otimizando a Gestão de Insumos: Evitando Desperdícios na Manipulação",
+                content: `
+                    <p>A gestão eficiente de insumos é um fator crítico para a lucratividade e a sustentabilidade de uma farmácia de manipulação. Perdas por vencimento, contaminação ou desvio de estoque impactam diretamente o custo dos produtos e, consequentemente, a margem de lucro. Otimizar esse processo é fundamental para minimizar desperdícios e garantir a disponibilidade dos materiais certos no momento certo.</p>
+                    <h4>Estratégias para Otimizar a Gestão de Insumos:</h4>
+                    <ol>
+                        <li><strong>Controle Rigoroso de Estoque:</strong>
+                            <ul>
+                                <li><strong>Sistema de Inventário Preciso:</strong> Utilize um sistema informatizado (software de gestão) para registrar todas as entradas e saídas de insumos. Isso proporciona visibilidade em tempo real do estoque.</li>
+                                <li><strong>Categorização e Identificação:</strong> Organize os insumos por categoria e identifique-os claramente com nome, lote, data de validade e condições de armazenamento.</li>
+                                <li><strong>Contagem Cíclica:</strong> Implemente contagens periódicas (diárias, semanais) de itens específicos para garantir a acuracidade do estoque físico versus o registado no sistema.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Previsão de Demanda e Compras Inteligentes:</strong>
+                            <ul>
+                                <li><strong>Análise Histórica:</strong> Baseie suas decisões de compra no histórico de vendas e manipulações. Isso ajuda a prever a demanda futura e evitar compras excessivas ou insuficientes.</li>
+                                <li><strong>Parcerias com Fornecedores:</strong> Mantenha um bom relacionamento com fornecedores confiáveis. Negocie prazos de entrega e condições de pagamento que favoreçam o fluxo de caixa.</li>
+                                <li><strong>Compras Programadas:</strong> Para insumos de alto giro, estabeleça um cronograma de compras para evitar rupturas de estoque e aproveitar melhores preços.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Minimização de Perdas:</strong>
+                            <ul>
+                                <li><strong>Primeiro que Vence, Primeiro que Sai (PVPS/FIFO):</strong> Adote a prática de usar os insumos com validade mais próxima primeiro. Organize o estoque para facilitar essa rotação.</li>
+                                <li><strong>Controle de Condições de Armazenamento:</strong> Mantenha os insumos nas condições ideais de temperatura, humidade e luminosidade, conforme as especificações do fabricante, para evitar degradação e perda de potência.</li>
+                                <li><strong>Treinamento da Equipe:</strong> Garanta que a equipa responsável pelo manuseio e armazenamento dos insumos seja treinada em boas práticas de armazenamento e prevenção de avarias.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Aproveitamento de Resíduos e Subprodutos (quando aplicável):</strong>
+                            <ul>
+                                <li>Para alguns processos, pode haver subprodutos ou resíduos que possam ser reutilizados ou reciclados de forma segura e regulamentada, reduzindo o descarte e gerando valor.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Uma gestão de insumos otimizada não só evita desperdícios, mas também melhora a qualidade dos produtos, a eficiência da produção e a rentabilidade da farmácia. É um investimento contínuo em processos que se reflete diretamente no sucesso do negócio.</p>
+                `
+            }
+        };
+
         // Função para exibir mensagens customizadas (substituindo alert())
         function showMessage(message) {
             const modal = document.getElementById('message-modal');
@@ -279,10 +428,37 @@
             modal.classList.add('hidden'); // Esconde o modal
         }
 
-        // Event listener para fechar o modal
-        document.getElementById('modal-close-button').addEventListener('click', hideMessage);
+        // Função para exibir o modal do artigo
+        function showArticleModal(articleId) {
+            const articleModal = document.getElementById('article-modal');
+            const modalArticleTitle = document.getElementById('modal-article-title');
+            const modalArticleBody = document.getElementById('modal-article-body');
+
+            const article = articlesData[articleId];
+
+            if (article) {
+                modalArticleTitle.textContent = article.title;
+                modalArticleBody.innerHTML = article.content; // Use innerHTML para formatar o conteúdo
+                articleModal.classList.remove('hidden'); // Mostra o modal
+            } else {
+                showMessage("Artigo não encontrado.");
+            }
+        }
+
+        // Função para esconder o modal do artigo
+        function hideArticleModal() {
+            const articleModal = document.getElementById('article-modal');
+            articleModal.classList.add('hidden'); // Esconde o modal
+        }
+
 
         document.addEventListener('DOMContentLoaded', async () => {
+            // Event listener para fechar o modal de mensagens
+            document.getElementById('modal-close-button').addEventListener('click', hideMessage);
+
+            // Event listener para fechar o modal de artigos
+            document.getElementById('article-close-button').addEventListener('click', hideArticleModal);
+
             // Inicializa Firebase
             const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
             if (firebaseConfig) {
@@ -306,13 +482,23 @@
                 }
             } else {
                 console.error("Configuração do Firebase não encontrada.");
-                showMessage("Configuração do Firebase ausente. A funcionalidade de newsletter não está disponível.");
+                showMessage("Configuração do Firebase ausente. A funcionalidade de newsletter e contato não está disponível.");
             }
+
+            // Lógica para os botões "Ler Mais" dos artigos
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); // Impede o comportamento padrão do link
+                    const articleId = button.dataset.articleId; // Obtém o ID do artigo do atributo data-article-id
+                    showArticleModal(articleId);
+                });
+            });
 
             // Lógica para o formulário de newsletter
             const newsletterForm = document.getElementById('newsletter-form');
             const emailInput = document.getElementById('email-input');
-            const messageDisplay = document.getElementById('message-display');
+            const messageDisplay = document.getElementById('message-display'); // Note: este elemento não está mais em uso direto, mas mantido.
 
             newsletterForm.addEventListener('submit', async (e) => {
                 e.preventDefault(); // Impede o recarregamento da página
@@ -362,7 +548,6 @@
             const contactEmailInput = document.getElementById('contact-email');
             const contactPhoneInput = document.getElementById('contact-phone');
             const contactMessageInput = document.getElementById('contact-message');
-            // const contactMessageDisplay = document.getElementById('contact-message-display'); // Removido pois modal é preferido
 
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -392,7 +577,6 @@
                     showMessage("Por favor, digite um telefone válido.");
                     return;
                 }
-
 
                 if (!db || !userId) {
                     showMessage("Sistema não inicializado. Tente novamente ou contate o suporte.");
@@ -427,3 +611,4 @@
     </script>
 </body>
 </html>
+
