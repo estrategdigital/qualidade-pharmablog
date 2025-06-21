@@ -37,8 +37,11 @@
     <header class="bg-white text-gray-800 shadow-md p-4 md:p-6 sticky top-0 z-40">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <a href="#" class="text-3xl font-extrabold text-purple-700 mb-4 md:mb-0 flex items-center">
-                <!-- Link DIRETO da sua logo. Verifique se o nome do arquivo está correto (logotipo.png ou logo.jpg) -->
-                <img src="https://raw.githubusercontent.com/estrategia-digital/qualidade-pharmablog/main/ativos/imagens/logotipo.png" alt="Logo Qualidade PharmaBlog" class="h-10 mr-3">
+                <!-- Link da logo utilizando o contentFetchId do ficheiro logo.jpg -->
+                <img src="uploaded:logo.jpg-e3a59cc6-8854-4c45-8458-389a20477b92"
+                     alt="Logo Qualidade PharmaBlog"
+                     class="h-10 mr-3"
+                     onerror="this.onerror=null;this.src='https://placehold.co/100x40/fbcfe8/6b21a8?text=LOGO';">
                 <span class="text-2xl">Qualidade PharmaBlog</span>
             </a>
             <nav>
@@ -175,8 +178,11 @@
             <div class="container mx-auto px-4 max-w-4xl">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-10">Sobre Mim</h2>
                 <div class="flex flex-col md:flex-row items-center md:items-start md:space-x-10">
-                    <!-- Link DIRETO da sua foto, obtido do GitHub -->
-                    <img src="https://raw.githubusercontent.com/estrategia-digital/qualidade-pharmablog/main/ativos/imagens/IMG_20240519_144742_119.jpg" alt="Sua foto de perfil" class="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-pink-200 mb-8 md:mb-0 flex-shrink-0">
+                    <!-- Link DIRETO da sua foto de perfil, utilizando o contentFetchId do ficheiro image_5b0b7c.jpg -->
+                    <img src="uploaded:image_5b0b7c.jpg-df87cf53-a458-42dc-ab1c-010d65418265"
+                         alt="Sua foto de perfil"
+                         class="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-pink-200 mb-8 md:mb-0 flex-shrink-0"
+                         onerror="this.onerror=null;this.src='https://placehold.co/180x180/cbd5e1/1e293b?text=FOTO';">
                     <div class="text-left flex-grow">
                         <p class="text-gray-700 text-lg md:text-xl mb-4 leading-relaxed">
                             Olá! Me chamo Camila e sou estudante de Marketing Digital e Farmácia, com experiência prática no Controle de Qualidade de farmácias de manipulação. Meu objetivo é descomplicar temas complexos e compartilhar insights valiosos sobre Boas Práticas de Fabricação (BPF), gestão e otimização de processos para o setor farmacêutico.
@@ -428,3 +434,4 @@
     </script>
 </body>
 </html>
+
