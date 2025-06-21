@@ -40,8 +40,18 @@
         .article-content h3 {
             @apply text-2xl font-bold text-purple-700 mb-4;
         }
+        /* Adicionado estilo direto para parágrafos dentro do modal do artigo */
         .article-content p {
             @apply text-gray-700 text-base leading-relaxed mb-4;
+        }
+        .article-content ul, .article-content ol {
+            @apply list-disc list-inside mb-4 pl-4;
+        }
+        .article-content ul li, .article-content ol li {
+            @apply mb-2;
+        }
+        .article-content h4 {
+            @apply text-xl font-semibold text-purple-600 mt-6 mb-3;
         }
         .article-close-button {
             @apply absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 rounded-full p-2 text-gray-600 transition duration-300;
@@ -108,7 +118,7 @@
 
                     <!-- Artigo 1: Desvendando as Boas Práticas de Fabricação (BPF) para Farmácias de Manipulação -->
                     <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col" data-article-id="bpf-farmacias">
-                        <img src="https://placehold.co/600x300/fbe9e8/e53e3e?text=BPF" alt="Imagem ilustrativa de Boas Práticas de Fabricação" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x300/fbe9e8/e53e3e?text=BPF" alt="Ilustração de Boas Práticas de Fabricação" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-purple-700 mb-3 leading-tight">
                                 Desvendando as Boas Práticas de Fabricação (BPF) para Farmácias de Manipulação
@@ -125,7 +135,7 @@
 
                     <!-- Artigo 2: Preparando Sua Farmácia para uma Auditoria da ANVISA: Um Checklist Essencial -->
                     <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col" data-article-id="auditoria-anvisa">
-                        <img src="https://placehold.co/600x300/e0f2f7/4c51bf?text=Auditoria" alt="Imagem ilustrativa de auditoria ANVISA" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x300/e0f2f7/4c51bf?text=Auditoria" alt="Ilustração de auditoria ANVISA" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-purple-700 mb-3 leading-tight">
                                 Preparando Sua Farmácia para uma Auditoria da ANVISA: Um Checklist Essencial
@@ -142,7 +152,7 @@
 
                     <!-- Artigo 3: Otimizando a Gestão de Insumos: Evitando Desperdícios na Manipulação -->
                     <article class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col" data-article-id="gestao-insumos">
-                        <img src="https://placehold.co/600x300/f3e8ff/8b5cf6?text=Insumos" alt="Imagem ilustrativa de gestão de insumos" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x300/f3e8ff/8b5cf6?text=Insumos" alt="Ilustração de gestão de insumos" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-purple-700 mb-3 leading-tight">
                                 Otimizando a Gestão de Insumos: Evitando Desperdícios na Manipulação
@@ -279,7 +289,7 @@
                 </svg>
             </button>
             <h3 id="modal-article-title"></h3>
-            <div id="modal-article-body" class="prose max-w-none"></div>
+            <div id="modal-article-body"></div>
         </div>
     </div>
 
@@ -430,6 +440,7 @@
 
         // Função para exibir o modal do artigo
         function showArticleModal(articleId) {
+            console.log(`Tentando exibir modal para o artigo com ID: ${articleId}`); // Log de depuração
             const articleModal = document.getElementById('article-modal');
             const modalArticleTitle = document.getElementById('modal-article-title');
             const modalArticleBody = document.getElementById('modal-article-body');
@@ -440,7 +451,9 @@
                 modalArticleTitle.textContent = article.title;
                 modalArticleBody.innerHTML = article.content; // Use innerHTML para formatar o conteúdo
                 articleModal.classList.remove('hidden'); // Mostra o modal
+                console.log(`Modal para o artigo '${articleId}' exibido com sucesso.`); // Log de depuração
             } else {
+                console.error(`Artigo com ID '${articleId}' não encontrado em articlesData.`); // Log de depuração
                 showMessage("Artigo não encontrado.");
             }
         }
@@ -449,10 +462,13 @@
         function hideArticleModal() {
             const articleModal = document.getElementById('article-modal');
             articleModal.classList.add('hidden'); // Esconde o modal
+            console.log("Modal do artigo escondido."); // Log de depuração
         }
 
 
         document.addEventListener('DOMContentLoaded', async () => {
+            console.log("DOM completamente carregado."); // Log de depuração
+
             // Event listener para fechar o modal de mensagens
             document.getElementById('modal-close-button').addEventListener('click', hideMessage);
 
@@ -487,10 +503,12 @@
 
             // Lógica para os botões "Ler Mais" dos artigos
             const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            console.log(`Encontrados ${readMoreButtons.length} botões 'Ler Mais'.`); // Log de depuração
             readMoreButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault(); // Impede o comportamento padrão do link
                     const articleId = button.dataset.articleId; // Obtém o ID do artigo do atributo data-article-id
+                    console.log(`Botão 'Ler Mais' clicado. articleId obtido: ${articleId}`); // Log de depuração
                     showArticleModal(articleId);
                 });
             });
@@ -611,4 +629,3 @@
     </script>
 </body>
 </html>
-
